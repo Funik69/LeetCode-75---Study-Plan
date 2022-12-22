@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int pivotIndex(vector<int>& nums) {
+       int idx=-1; 
+       int c_sum=nums[0];
+       int sum=accumulate(nums.begin(),nums.end(),0);
+       if(sum-nums[0]==0)
+       return 0;
+       for(int i=1;i<nums.size();i++){
+          if(c_sum==sum-c_sum-nums[i])
+          return i;
+          c_sum+=nums[i];
+       } 
+      
+       if(sum-nums[nums.size()-1]==0)
+       return nums.size()-1;
+   return -1; }
+};
