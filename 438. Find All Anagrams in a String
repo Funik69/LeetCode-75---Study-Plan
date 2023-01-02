@@ -1,0 +1,19 @@
+class Solution {
+public:
+    vector<int> findAnagrams(string s, string p) {
+    vector<int> result;
+    unordered_map<char,int> source,pattern;
+    for(auto a:p) ++pattern[a];
+    int j, i=p.size()-1;
+    for(j=0;j<i;++j) ++source[s[j]];
+    i=0;
+    while(j<s.size()){
+        ++source[s[j]];
+        if(source==pattern) result.push_back(i);
+        --source[s[i]];
+        if(source[s[i]] == 0) source.erase(s[i]);
+        ++i, ++j;
+    }
+    return result;
+}
+};
